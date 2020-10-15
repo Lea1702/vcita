@@ -8,6 +8,11 @@ import MailIcon from '@material-ui/icons/Mail';
 import LockIcon from '@material-ui/icons/Lock';
 import PhoneIcon from '@material-ui/icons/Phone';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import PublicIcon from '@material-ui/icons/Public';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import '@fortawesome/fontawesome-free/css/all.css';
+import './style.css';
 
 const useStyles = makeStyles((theme) => ({
     margin: {
@@ -23,9 +28,7 @@ const CreateBusiness = (props) => {
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
 
-    const handleClick = (e) => {
-        console.log("name : ", name);
-        console.log("email : ", email);
+    const handleClick = async (e) => {
         const body = { "business":
                 { "business_name": name,
                     "email": email,
@@ -34,23 +37,28 @@ const CreateBusiness = (props) => {
                     "phone_info": phone,
                     "meeting_location": address}
         };
-        props.createBusiness(body);
+        await props.createBusiness(body);
+        setName("");
+        setEmail("");
+        setPassword("");
+        setCountry("");
+        setPhone("");
+        setAddress("");
     };
 
     const validateForm = () => {
         return name.length>0 && email.length>0 && password.length>0 && country.length>0 && phone.length>0 && address.length>0 ;
     };
 
-
     const classes = useStyles();
     return (
-        <div>
+        <div className="new-business">
         <div className={classes.margin}>
-        <Grid container spacing={1} alignItems="flex-end">
-            <Grid item>
+        <Grid container  spacing={1} alignItems="flex-end">
+            <Grid item >
                 <AccountCircle />
             </Grid>
-            <Grid item>
+            <Grid item >
                 <TextField id="input-with-icon-grid" label="Name" value={name}
                            onChange={e => setName(e.target.value)}/>
             </Grid>
@@ -73,7 +81,7 @@ const CreateBusiness = (props) => {
                         <LockIcon />
                     </Grid>
                     <Grid item>
-                        <TextField id="input-with-icon-grid" label="Password" value={password}
+                        <TextField type="password" id="input-with-icon-grid" label="Password" value={password}
                                    onChange={e => setPassword(e.target.value)}/>
                     </Grid>
                 </Grid>
@@ -81,7 +89,7 @@ const CreateBusiness = (props) => {
             <div className={classes.margin}>
                 <Grid container spacing={1} alignItems="flex-end">
                     <Grid item>
-                        <PhoneIcon />
+                        <PublicIcon />
                     </Grid>
                     <Grid item>
                         <TextField id="input-with-icon-grid" label="Country" value={country}
@@ -111,19 +119,23 @@ const CreateBusiness = (props) => {
                     </Grid>
                 </Grid>
             </div>
-            <Button disabled={!validateForm()} variant="contained" color="primary" onClick={(e) => handleClick(e)}>
+            {!props.createPending ?
+            <Button disabled={!validateForm()} variant="contained" color="primary" className="create-account" onClick={(e) => handleClick(e)}>
                 CREATE ACCOUNT
-            </Button>
+            </Button>:
+                <i className="fas fa-circle-notch fa-spin loading"></i>
+            }
+                <ToastContainer />
         </div>);
 };
 
-
-
 export default class Create extends React.Component {
     render(){
-        return (<div>
-                <CreateBusiness createBusiness={this.props.createBusiness} />
-
+        return (
+            <div>
+                <h2 className="sansserif create">Create new business</h2>
+                <CreateBusiness createPending={this.props.createPending}  createBusiness={this.props.createBusiness}
+                            getBusinesses={this.props.getBusinesses}  />
             </div>)
     }
 }

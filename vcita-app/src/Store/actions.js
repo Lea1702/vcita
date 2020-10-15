@@ -1,4 +1,4 @@
-export function getBusinesses (page = 1, per_page=10, sort_by="created_at", sort_order= "desc") {
+export function getBusinesses (sort_by="created_at", sort_order= "desc", page = 1, per_page=100) {
     return{
         type: "GET_BUSINESSES",
         page: page, per_page: per_page, sort_by: sort_by, sort_order: sort_order

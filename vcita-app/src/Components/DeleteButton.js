@@ -3,12 +3,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-
-const options = [
-    'Delete'
-];
-
-const ITEM_HEIGHT = 48;
+import {options, ITEM_HEIGHT} from "./consts";
 
 export default function LongMenu(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -21,7 +16,6 @@ export default function LongMenu(props) {
     const handleClose = async () => {
         setAnchorEl(null);
         await props.onDelete(props.uid);
-        await props.getBusinesses();
     };
 
     return (

@@ -1,63 +1,50 @@
-.input {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-input {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.Login {
-    padding: 5% 5%;
-    border: 1px solid #ccc;
-    border-radius: 4%;
-    margin: 2% 30% 2% 15%;
-    position: fixed;
-    background-color: white;
-    width: 20%;
-    height: 40%;
-    z-index: 10;
-}
-
-.searchable-input{
-    margin: 5% 25% 5% 25%;
-}
-
-.MuiButton-root{
-    /*margin-left: 1500% !important;*/
-}
-
-.searchable-list {
-    left: 25% !important;
+.MuiTableContainer-root {
     width: 50% !important;
 }
 
-label {
-    color: black !important;
+.new-account {
+    background-color: darkseagreen  !important;
+    color: white !important;
+    margin-left : 60% !important;
+    position: relative !important;
 }
 
-.button1 {
-    margin: 0 0 5% 45% !important;
+.new-business {
+    border-style: outset;
+    padding: 2% 2% 2% 2%;
+    margin: 2% 70% 0 0;
 }
 
-.button1 {
-    margin-left: 45% !important;
+.create-account {
+    margin: 5% 0 2% 5% !important
 }
-.update {
-    margin: -8% 30% 2% 30% !important;
+
+.MultiTextField-root {
+    margin: 0 !important
+}
+
+.grid-item {
+    margin: 0 !important
+}
+
+@-webkit-keyframes rotating {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.loading {
+    margin: 15% 5% 5% 15%;
+}
+
+.sansserif {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .create {
-    margin: 4% 35% 2% 45% !important;
+    margin-top:5%;
+    color: rgba(50,51,50,0.89)
 }

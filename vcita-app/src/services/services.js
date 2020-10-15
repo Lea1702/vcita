@@ -2,14 +2,11 @@ import React from "react";
 import axios from "axios";
 import {token} from "../config"
 
-console.log("token : ", token);
-
-export const getBusinesses = async (page, per_page, sort_by, sort_order) => {
+export const getBusinesses = async (sort_by, sort_order, page, per_page) => {
     try {
         let url = `https://api2.meet2know.com/operator_api/v1/businesses/get_businesses?page=${page.toString()}&per_page=${per_page.toString()}&sort_by=${sort_by}&sort_order=${sort_order}`;
         let res = await axios.get(url, { headers:  { 'Authorization': token  }});
-        console.log("res.data.data.businesses : ", res.data.data.businesses);
-        return res.data.data.businesses;
+        return res.data.data;
     }
     catch (err) {
         throw err;
@@ -37,4 +34,3 @@ export const createBusiness = async (body) => {
         throw err;
     }
 };
-

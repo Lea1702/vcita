@@ -1,21 +1,18 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import {Link} from "react-router-dom";
+import "./appBar.css";
+import "./style.css";
+import logo from '../static/icon.png';
 
 export class MenuBar extends React.Component {
     render(){
         return (
-                <AppBar position="static">
-                    <Toolbar>
-                        <Typography variant="h6" >
-                            Books shop
-                        </Typography>
-
-                        <Link to="/">Client Accounts</Link>
-                    </Toolbar>
-                </AppBar>
+                    <ul className="sidebar-nav">
+                        <img src={logo} className="logo" />
+                        <li className="sidebar-brand">
+                            <Link to="/" className="sansserif">Client Accounts</Link>
+                        </li>
+                    </ul>
         )
     }
 }
