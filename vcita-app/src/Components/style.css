@@ -12,7 +12,7 @@
 .new-business {
     border-style: outset;
     padding: 2% 2% 2% 2%;
-    margin: 2% 70% 0 0;
+    margin: 2% 55% 0 0;
 }
 
 .create-account {
@@ -47,4 +47,8 @@
 .create {
     margin-top:5%;
     color: rgba(50,51,50,0.89)
+}
+
+.MuiInput-underline{
+    width:200%;
 }
