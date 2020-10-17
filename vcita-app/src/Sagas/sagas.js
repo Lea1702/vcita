@@ -1,14 +1,14 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import * as services from '../services/services'
 import {toast} from "react-toastify";
-import * as actionCreator from "./actions"
+import * as actionCreator from "../Store/actions"
 
 function* getBusinesses (action) {
     try {
         const businesses = yield call(services.getBusinesses, action.sort_by, action.sort_order, action.page, action.per_page);
         yield put({type: "GET_BUSINESSES_SUCCEED", businesses: businesses.businesses, total: businesses.total});
     } catch (e) {
-        toast("Error getting businesses");
+        toast.error("Error getting businesses");
     }
 }
 
@@ -16,9 +16,9 @@ function* deleteBusiness (action) {
     try {
         yield call(services.deleteBusiness, action.business_id);
         yield put(actionCreator.getBusinesses());
-        toast("Business deleted");
+        toast.success("Business deleted");
     } catch (e) {
-        toast("Error : e.message");
+        toast.error("Error : e.message");
     }
 }
 
@@ -26,13 +26,14 @@ function* createBusiness (action) {
     try {
         yield call(services.createBusiness,  action.business);
         yield put({type: "CREATE_BUSINESS_SUCCEED"});
-        toast("Business created !");
-        setTimeout('', 3000);
+        toast.success("Business created !");
+        setTimeout(null, 3000);
+        //takes time to get updated
         yield put(actionCreator.getBusinesses());
     } catch (e) {
         yield put({type: "CREATE_BUSINESS_FAILED"});
         Object.values(e.response.data.data).forEach((value) =>{
-            toast(value[0]);
+            toast.error(value[0]);
         } );
     }
 }
